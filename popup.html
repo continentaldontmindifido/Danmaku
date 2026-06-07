@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danmaku AI Commentator</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <span class="logo">弾幕</span>
+      <div>
+        <div class="title">Danmaku AI</div>
+        <div class="subtitle">AI Comment Overlay</div>
+      </div>
+    </div>
+    <label class="toggle-switch" title="Enable / Disable">
+      <input type="checkbox" id="enabled-toggle" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="section">
+    <div class="label">AI Provider</div>
+    <div class="segmented" id="provider-group">
+      <button class="seg-btn active" data-value="openai">OpenAI</button>
+      <button class="seg-btn" data-value="ollama">Ollama</button>
+    </div>
+  </div>
+
+  <div id="openai-section" class="section">
+    <label class="label" for="api-key">OpenAI API Key</label>
+    <div class="api-key-row">
+      <input
+        type="password"
+        id="api-key"
+        class="input"
+        placeholder="sk-..."
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="toggle-key-visibility" class="icon-btn" title="Show/Hide key">👁</button>
+    </div>
+    <div id="key-status" class="key-status"></div>
+  </div>
+
+  <div id="ollama-section" class="section" style="display:none">
+    <label class="label" for="ollama-endpoint">Ollama Endpoint</label>
+    <input
+      type="text"
+      id="ollama-endpoint"
+      class="input"
+      placeholder="http://localhost:11434"
+      autocomplete="off"
+      spellcheck="false"
+    />
+    <label class="label" for="ollama-model" style="margin-top:8px">Model Name</label>
+    <input
+      type="text"
+      id="ollama-model"
+      class="input"
+      placeholder="llava"
+      autocomplete="off"
+      spellcheck="false"
+    />
+    <div class="key-status" style="margin-top:5px">Vision models: llava, llava-phi3, llama3.2-vision</div>
+  </div>
+
+  <div class="section">
+    <div class="label">Comment Speed</div>
+    <div class="segmented" id="speed-group">
+      <button class="seg-btn" data-value="slow">Slow</button>
+      <button class="seg-btn" data-value="medium">Medium</button>
+      <button class="seg-btn" data-value="fast">Fast</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <label class="label" for="font-size">
+      Font Size <span id="font-size-value">24</span>px
+    </label>
+    <input type="range" id="font-size" class="slider-input" min="14" max="48" step="2" value="24" />
+  </div>
+
+  <div class="section">
+    <label class="label" for="opacity">
+      Opacity <span id="opacity-value">90</span>%
+    </label>
+    <input type="range" id="opacity" class="slider-input" min="10" max="100" step="5" value="90" />
+  </div>
+
+  <div class="section">
+    <div class="label">Comment Styles</div>
+    <div class="checkboxes">
+      <label class="checkbox-row">
+        <input type="checkbox" id="style-funny" checked />
+        <span class="checkmark"></span>
+        <span>😂 Funny &amp; Sarcastic</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="style-hype" checked />
+        <span class="checkmark"></span>
+        <span>🔥 Hype &amp; Enthusiastic</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="style-analytical" checked />
+        <span class="checkmark"></span>
+        <span>🎬 Analytical &amp; Thoughtful</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="style-absurdist" checked />
+        <span class="checkmark"></span>
+        <span>🌀 Absurdist &amp; Random</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button id="save-btn" class="save-btn">Save Settings</button>
+    <div id="save-status" class="save-status"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

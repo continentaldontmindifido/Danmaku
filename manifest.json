@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Danmaku AI Commentator",
+  "version": "1.4.0",
+  "description": "AI-powered Danmaku (弾幕) style floating comments for Netflix and YouTube, powered by OpenAI or Ollama.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Danmaku AI Commentator"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.netflix.com/*",
+        "https://www.youtube.com/*",
+        "https://youtube.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["danmaku.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://www.netflix.com/*",
+    "https://www.youtube.com/*",
+    "https://youtube.com/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ]
+}
